@@ -155,7 +155,8 @@ namespace HelloCoreMVCApp.Controllers
         [Route("api/product/byCategory")]
         public IEnumerable<Product> GetByCategory(int categoryId)
         {
-           var products =  _productManager.GetByCategory(categoryId);
+            var products = _productManager.GetByCategory(categoryId);
+            
             return products;
         }
     }

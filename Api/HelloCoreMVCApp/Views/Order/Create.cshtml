@@ -1,24 +1,24 @@
 ﻿@model HelloCoreMVCApp.Models.Order.OrderViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 <h4>OrderViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-8">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="OrderNo" class="control-label"></label>
-                <input asp-for="OrderNo" class="form-control" />
+                <input type="text" asp-for="OrderNo" class="form-control" />
                 <span asp-validation-for="OrderNo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OrderDate" class="control-label"></label>
+                <label asp-for="OrderDate" class="control-label readonly"></label>
                 <input asp-for="OrderDate" class="form-control" />
                 <span asp-validation-for="OrderDate" class="text-danger"></span>
             </div>
@@ -28,13 +28,14 @@
                     <option>Select...</option>
                 </select>
             </div>
+            @Html.HiddenFor(c => c.Id)
 
             <div class="row">
-                <h4>Order Deatails</h4>
+                <h4>Order Details</h4>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="productId" class="control-label">Product</label>
-                        <select id="productId" name="productId" asp-items="@Model.ProductSelectItems" class="form-control">
+                        <label for="ProductId" class="control-label">Product</label>
+                        <select id="ProductId" name="ProductId" asp-items="@Model.ProductSelectItems" class="form-control">
                             <option>Select...</option>
                         </select>
                     </div>
@@ -53,33 +54,35 @@
                         <input type="number" id="discountPercent" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <input type="button" id="addButton" value="Add" class="btn btn-success" />
+                        <input type="button" id="btnAdd" value="Add" class="btn btn-success" />
                     </div>
                 </div>
 
             </div>
+
+
             <div class="row">
-                <table class="table table-striped table-bordered table-hover table-responsive">
+                <input type="hidden" id="dtlRowHiden" />
+                <input type="hidden" id="dtlIdHiden" value="0" />
+                <table id="dtlTable" class="table table-striped table-bordered table-hover table-responsive">
                     <thead>
                         <tr>
+                            <th>rowNumber</th>
+                            <th>CustomerProductId</th>
+                            <th>ProductTypeId</th>
                             <th>Product</th>
                             <th>Qty</th>
                             <th>Unit Price</th>
                             <th>Discount Percent</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="tbOrderDetails"></tbody>
                 </table>
-            </div>
-            <div class="form-group">
-
-
-            </div>
-
-
+            </div><br />
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="btnSubmit" type="button" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -89,7 +92,17 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+
 @section Scripts{
 
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <script src="~/Scripts/AppScripts/Order/order-create.js"></script>
 }
+

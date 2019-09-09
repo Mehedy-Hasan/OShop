@@ -10,6 +10,8 @@ namespace HelloCoreMVCApp.Models.Order
 {
     public class OrderViewModel
     {
+       
+        public int Id { get; set; }
         [Display(Name = "Order No")]
         public string OrderNo { get; set; }
         [Display(Name = "Date")]

@@ -33,6 +33,15 @@ namespace Repositories
                 .FirstOrDefault(c=>c.Id==orderId);
         }
 
+        public ICollection<Order> GetByOrder(int id)
+        {
+            return db.Orders
+                .Where(c => c.Id == id)
+                .Include(c=>c.OrderDetails)
+                //.Include(c=>c.Customer)
+                .ToList();
+        }
+
         public override ICollection<Order> GetAll()
         {
             return db.Orders.Include(c => c.OrderDetails).ToList();

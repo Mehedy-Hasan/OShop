@@ -10,5 +10,6 @@ namespace BLL.Contracts
     {
         ICollection<VWOrderInfo> GetAllOrderSummary();
         Order GetByOrderDetails(int orderId);
+        ICollection<Order> GetByOrder(int id);
     }
 }

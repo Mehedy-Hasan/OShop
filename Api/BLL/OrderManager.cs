@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BLL.Base;
 using BLL.Contracts;
@@ -25,6 +26,11 @@ namespace BLL
         public Order GetByOrderDetails(int orderId)
         {
             return _repository.GetByOrderDetail(orderId);
+        }
+
+        public ICollection<Order> GetByOrder(int id)
+        {
+            return _repository.GetByOrder(id);
         }
     }
 }

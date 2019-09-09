@@ -12,7 +12,7 @@ namespace Repositories
 {
     public class CategoryRepository:Repository<Category>,ICategoryRepository
     {
-        CustomerDbContext db = new CustomerDbContext();
+        new CustomerDbContext db = new CustomerDbContext();
         public override ICollection<Category> GetAll()
         {
             var categories=  db

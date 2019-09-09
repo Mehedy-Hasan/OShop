@@ -11,5 +11,6 @@ namespace Repositories.Contracts
     {
         ICollection<VWOrderInfo> GetAllOrderSummary();
         Order GetByOrderDetail(int orderId);
+        ICollection<Order> GetByOrder(int id);
     }
 }

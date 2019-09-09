@@ -18,6 +18,8 @@ namespace HelloCoreMVCApp.AutomapperConfiguration
             CreateMap<Product, ProductViewModel>();
             CreateMap<Order, OrderViewModel>();
             CreateMap<OrderViewModel, Order>();
+            CreateMap<OrderDetail, OrderViewModel>();
+            CreateMap<OrderViewModel, OrderDetail>();
         }
     }
 }
