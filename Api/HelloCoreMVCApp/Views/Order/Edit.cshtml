@@ -1,0 +1,118 @@
+﻿@model HelloCoreMVCApp.Models.Order.OrderViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>OrderViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderNo" class="control-label"></label>
+                <input type="text" asp-for="OrderNo" readonly="readonly" class="form-control" />
+                <span asp-validation-for="OrderNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label readonly"></label>
+                <input asp-for="OrderDate" readonly="readonly" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label">Customer</label>
+                    <select disabled="disabled" asp-for="CustomerId" asp-items="@Model.Customers" class="form-control">
+                        
+                    </select>
+            </div>
+
+            <div class="row">
+                <h4>Order Details</h4>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productId" class="control-label">Product</label>
+                        <select id="productId" name="productId" asp-items="@Model.ProductSelectItems" class="form-control">
+                            <option>Select...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="unitPrice" class="control-label">Unit Price</label>
+                        <input type="number" id="unitPrice" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="qty" class="control-label">Qty</label>
+                        <input type="number" id="qty" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="discountPercent" class="control-label">discountPercent</label>
+                        <input type="number" id="discountPercent" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" id="addButton" value="Add" class="btn btn-success" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <input type="hidden" id="tableIndexId"/>
+
+                <table class="table table-striped table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Discount Percent</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbOrderDetails">
+                    @foreach (var item in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>
+                                @item.Product.Name
+                            </td>
+                            <td>
+                                @item.Qty
+                            </td>
+                            <td>
+                                @item.UnitPrice
+                            </td>
+                            <td>
+                                @item.DiscountPercentage
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary" value="Edit"/>
+                                <input type="button" class="btn btn-danger" value="Remove"/>
+                            </td>
+
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts{
+
+
+    <script src="~/Scripts/AppScripts/Order/order-edit.js"></script>
+}
+
