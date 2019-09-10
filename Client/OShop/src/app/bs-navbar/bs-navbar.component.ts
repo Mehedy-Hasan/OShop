@@ -27,5 +27,6 @@ export class BsNavbarComponent implements OnInit {
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+    location.reload(true);
   }
 }

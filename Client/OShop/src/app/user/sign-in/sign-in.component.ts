@@ -28,6 +28,7 @@ export class SignInComponent implements OnInit {
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('/home');
+        location.reload(true);
       },
       err => {
         // tslint:disable-next-line: triple-equals
