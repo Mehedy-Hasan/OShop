@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AuthService {
+  userDetails$: Observable<any>;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    this.userDetails$ = this.getUserProfile();
+   }
   readonly baseURI = 'http://localhost:60841/api/';
 
   formModel = this.fb.group({
@@ -31,6 +36,7 @@ export class UserService {
       }
     }
   }
+  
   register() {
     const body = {
       UserName: this.formModel.value.UserName,
@@ -42,7 +48,18 @@ export class UserService {
   }
 
   login(formData) {
+    // tslint:disable-next-line: no-unused-expression
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
     return this.http.post(this.baseURI + 'ApplicationUser/login', formData);
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+    // tslint:disable-next-line: deprecation
+    location.reload(true);
   }
 
   getUserProfile() {
@@ -50,11 +67,11 @@ export class UserService {
   }
 
   roleMatch(allowedRoles): boolean {
-    var isMatch = false;
-    var payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    var userRole = payload.role;
+    let isMatch = false;
+    let payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    let userRole = payload.role;
     allowedRoles.forEach(element => {
-      if(userRole == element){
+      if (userRole == element) {
         isMatch = true;
         return false;
       }

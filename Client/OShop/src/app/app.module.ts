@@ -27,7 +27,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
-import { UserService } from './shared/user.service';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -64,17 +64,19 @@ import { UserService } from './shared/user.service';
     RouterModule.forRoot([
       {path: '', component: AppComponent},
       {path: 'products', component: ProductsComponent},
-      {path: 'check-out', component: CheckOutComponent},
-      {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard]},
-      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+      {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
+
+      {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
+      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
     ])
   ],
   providers: [
-  UserService, {
+  AuthService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthIntercepter,
     multi: true

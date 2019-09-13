@@ -1,5 +1,5 @@
+import { AuthService } from './../../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from './../../Shared/user.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class SignInComponent implements OnInit {
     username: '',
     password: ''
   };
-  constructor(private service: UserService, private router: Router, private toastr: ToastrService) { }
+  constructor(private service: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     if (localStorage.getItem('token') != null) {
@@ -28,6 +28,7 @@ export class SignInComponent implements OnInit {
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('/home');
+        // tslint:disable-next-line: deprecation
         location.reload(true);
       },
       err => {

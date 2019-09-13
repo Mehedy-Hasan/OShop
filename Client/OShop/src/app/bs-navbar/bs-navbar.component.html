@@ -9,11 +9,13 @@
     <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">Shoping Cart</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" *ngIf="!userDetails" routerLink='/user/signin'>Login</a>
-    </li>
+    <ng-template #anonmousUser>
+        <li class="nav-item">
+            <a class="nav-link" routerLink='/user/signin'>Login</a>
+        </li>
+    </ng-template>
     
-    <li *ngIf="userDetails" ngbDropdown class="nav-item dropdown">
+    <li *ngIf="service.userDetails$ | async as userDetails; else anonmousUser" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ userDetails.userName}}
         </a>

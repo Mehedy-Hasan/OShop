@@ -1,6 +1,5 @@
-import { UserService } from './../Shared/user.service';
+import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,24 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
-  userDetails;
 
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private service: AuthService) { }
 
-  ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  ngOnInit() {  }
 
   onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/']);
-    location.reload(true);
+    this.service.logout();
   }
 }

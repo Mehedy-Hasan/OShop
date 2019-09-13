@@ -1,4 +1,4 @@
-import { UserService } from './../../Shared/user.service';
+import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public service: UserService, private toaster: ToastrService) { }
+  constructor(public service: AuthService, private toaster: ToastrService) { }
 
   ngOnInit() {
     this.service.formModel.reset();
