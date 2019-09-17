@@ -70,6 +70,7 @@ export class AuthService {
     let isMatch = false;
     let payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     let userRole = payload.role;
+    let roles = userRole;
     allowedRoles.forEach(element => {
       if (userRole == element) {
         isMatch = true;
@@ -78,5 +79,6 @@ export class AuthService {
     });
     return isMatch;
   }
+
 
 }

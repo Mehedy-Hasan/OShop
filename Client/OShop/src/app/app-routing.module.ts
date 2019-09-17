@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {path: 'home' , component: HomeComponent},
   {path: 'forbidden' , component: ForbiddenComponent, canActivate: [AuthGuard]},
-  // {path: 'adminpanel' , component: AdminPanelComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}}
 ];
 
 @NgModule({

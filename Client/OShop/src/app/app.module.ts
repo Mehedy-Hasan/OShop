@@ -71,8 +71,8 @@ import { AuthService } from './auth/auth.service';
       {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
-      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard]},
-      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}},
+      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}}
     ])
   ],
   providers: [

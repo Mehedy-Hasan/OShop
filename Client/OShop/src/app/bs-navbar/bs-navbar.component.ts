@@ -1,3 +1,4 @@
+import { AuthGuard } from './../auth/auth.guard';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
+  public isAdmin;
+  constructor(private service: AuthService, public authGard: AuthGuard) { }
 
-  constructor(private service: AuthService) { }
+  ngOnInit() {
 
-  ngOnInit() {  }
+   }
 
   onLogout() {
     this.service.logout();

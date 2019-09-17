@@ -38,7 +38,7 @@ namespace WebApi.Controllers
         [Route("Resister")]
         public async Task<object> PostApplicationUser(ApplicationUserModel model)
         {
-            model.Role = "Customer";
+            model.Role = "Admin";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
