@@ -36,7 +36,7 @@ export class AuthService {
       }
     }
   }
-  
+
   register() {
     const body = {
       UserName: this.formModel.value.UserName,

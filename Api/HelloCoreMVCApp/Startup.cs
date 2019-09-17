@@ -37,6 +37,8 @@ namespace HelloCoreMVCApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors();
+
             services.AddTransient<IShopManager, ShopManager>();
             services.AddTransient<IShopRepository, ShopRepository>();
             services.AddTransient<ICategoryManager, CategoryManager>();
@@ -77,6 +79,9 @@ namespace HelloCoreMVCApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 
             app.UseMvc(routes =>
             {

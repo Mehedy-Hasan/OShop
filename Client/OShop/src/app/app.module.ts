@@ -28,6 +28,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './auth/auth.service';
+import { ProductCreateComponent } from './admin/product-create/product-create.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { AuthService } from './auth/auth.service';
     SignInComponent,
     HomeComponent,
     ForbiddenComponent,
+    ProductCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ import { AuthService } from './auth/auth.service';
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}},
+      {path: 'admin/products/new', component: ProductCreateComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard], data : {permittedRoles: ['Admin']}}
     ])
   ],
