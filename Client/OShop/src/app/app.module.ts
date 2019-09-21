@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule} from 'ng2-validation';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -55,6 +56,7 @@ import { ProductCreateComponent } from './admin/product-create/product-create.co
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    CustomFormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

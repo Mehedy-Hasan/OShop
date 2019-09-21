@@ -19,7 +19,5 @@ namespace Models
         //public List<Shop> Shops { get; set; }
         //public List<OrderDetail> Orders { get; set; }
         public  Category Category { get; set; }
-
-       
     }
 }

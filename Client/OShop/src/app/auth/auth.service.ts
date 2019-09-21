@@ -49,13 +49,13 @@ export class AuthService {
 
   login(formData) {
     // tslint:disable-next-line: no-unused-expression
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
 
     return this.http.post(this.baseURI + 'ApplicationUser/login', formData);
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
     // tslint:disable-next-line: deprecation
