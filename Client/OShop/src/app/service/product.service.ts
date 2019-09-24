@@ -33,4 +33,9 @@ export class ProductService {
     return products;
   }
 
+  getAll() {
+    var productsList = this.http.get(baseUrl + 'products');
+    return productsList;
+  }
+
 }
